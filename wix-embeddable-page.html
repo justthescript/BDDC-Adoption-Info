@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BDDC Adoption Information</title>
+
+  <!-- Load BDC Navigation Web Component -->
+  <script src="https://cdn.jsdelivr.net/gh/justthescript/bdc-nav@main/bdc-nav.js" defer></script>
+
+  <style>
+    /* Reset for Wix embed */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: hidden; /* prevent inner scrollbar */
+      background: transparent;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Style the BDC Nav component */
+    bdc-nav {
+      --pink: #5B9BD5;
+      --hover: #4A7BA7;
+      --text: #333;
+      --font: 16px;
+      --gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    /* Only show nav on desktop (it has built-in responsive behavior) */
+    @media (max-width: 900px) {
+      bdc-nav {
+        display: none;
+      }
+    }
+
+    .wix-container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 20px 15px;
+    }
+
+    .page-title {
+      background: linear-gradient(135deg, #5B9BD5 0%, #4A7BA7 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin: 0 0 30px 0;
+      width: 100%;
+    }
+
+    .page-title h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .page-title p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      opacity: 0.95;
+      font-style: italic;
+      margin: 0;
+    }
+
+    .tagline {
+      background-color: #E8F4F8;
+      padding: 20px;
+      text-align: center;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: #4A7BA7;
+      border-bottom: 3px solid #5B9BD5;
+      margin: 0 0 30px 0;
+      width: 100%;
+    }
+
+    .intro-section {
+      background: white;
+      padding: clamp(20px, 4vw, 30px);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      border-left: 5px solid #5B9BD5;
+    }
+
+    .intro-section h2 {
+      color: #4A7BA7;
+      margin-bottom: 15px;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+    }
+
+    .intro-section p {
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      color: #555;
+      margin: 0;
+    }
+
+    .paw-icon {
+      display: inline-block;
+      color: #5B9BD5;
+      margin-right: 8px;
+      font-size: 1.2em;
+    }
+
+    .section {
+      background: white;
+      padding: clamp(20px, 4vw, 30px);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+    }
+
+    .section h3 {
+      color: #4A7BA7;
+      margin-bottom: 20px;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      border-bottom: 2px solid #E8F4F8;
+      padding-bottom: 10px;
+    }
+
+    .included-item {
+      background: #F8FCFF;
+      padding: clamp(15px, 3vw, 20px);
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #5B9BD5;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .included-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 8px rgba(91, 155, 213, 0.2);
+    }
+
+    .included-item h4 {
+      color: #4A7BA7;
+      margin-bottom: 10px;
+      font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    }
+
+    .included-item p {
+      color: #555;
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+      margin: 0;
+    }
+
+    .included-item ul {
+      margin-left: clamp(20px, 4vw, 30px);
+      margin-top: 10px;
+    }
+
+    .included-item li {
+      margin-bottom: 5px;
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+    }
+
+    .note-box {
+      background: #FFF9E6;
+      border: 2px solid #FFD966;
+      border-radius: 8px;
+      padding: clamp(15px, 3vw, 20px);
+      margin: 20px 0;
+    }
+
+    .note-box h4 {
+      color: #B8860B;
+      margin-bottom: 10px;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .note-box p {
+      color: #666;
+      font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+      margin: 0;
+    }
+
+    .important-box {
+      background: #FFE6E6;
+      border: 2px solid #FF9999;
+      border-radius: 8px;
+      padding: clamp(15px, 3vw, 20px);
+      margin: 20px 0;
+    }
+
+    .important-box h4 {
+      color: #CC0000;
+      margin-bottom: 10px;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .important-box p {
+      font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+      margin: 0;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .step {
+      background: linear-gradient(135deg, #E8F4F8 0%, #D6EAF8 100%);
+      padding: 15px 10px;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px solid #5B9BD5;
+    }
+
+    .step-number {
+      background: #5B9BD5;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-weight: bold;
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+    }
+
+    .step p {
+      font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+      color: #333;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .not-included {
+      background: #F0F0F0;
+      padding: clamp(15px, 3vw, 20px);
+      border-radius: 8px;
+      border-left: 4px solid #999;
+    }
+
+    .not-included h4 {
+      color: #666;
+      margin-bottom: 10px;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+    }
+
+    .not-included ul {
+      margin-left: clamp(20px, 4vw, 30px);
+      color: #555;
+    }
+
+    .not-included li {
+      margin-bottom: 8px;
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+    }
+
+    .heart-icon {
+      color: #FF6B6B;
+      display: inline-block;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+    }
+
+    /* Mobile optimization */
+    @media (max-width: 768px) {
+      .wix-container { padding: 15px 10px; }
+      .page-title { padding: 30px 15px; }
+      .tagline { padding: 15px; }
+      .process-steps { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
+      .included-item:hover { transform: none; }
+    }
+
+    @media (max-width: 480px) {
+      .process-steps { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Ensure no horizontal overflow */
+    img { max-width: 100%; height: auto; }
+  </style>
+</head>
+
+<body>
+  <!-- BDC Navigation Header - Auto-mounted -->
+  <bdc-nav></bdc-nav>
+
+  <div class="wix-container">
+    <div class="page-title">
+      <h1>🏠 What's Included with Your BDDC Adoption? 🐾</h1>
+      <p>From Foster to Forever - We've Got You Covered!</p>
+    </div>
+
+    <div class="tagline">
+      <strong>Committed to Saving and Rehoming Abandoned and at Risk for Euthanasia Animals</strong>
+    </div>
+
+    <div class="intro-section">
+      <h2><span class="heart-icon">❤️</span> Your New Best Friend Comes Ready to Love!</h2>
+      <p>
+        When you adopt from Big Dogs Don't Cry, you're not just getting a furry companion, you're getting peace of mind!
+        Every adoption includes comprehensive medical care, preventive treatments, and ongoing support to help your new
+        family member thrive. We believe every pet deserves the best start in their forever home, and we're here to make
+        that happen.
+      </p>
+    </div>
+
+    <div class="section">
+      <h3><span class="paw-icon">🐾</span> Medical Care Included with Every Adoption</h3>
+
+      <div class="included-item">
+        <h4>✨ Spay/Neuter Surgery</h4>
+        <p>
+          Your pet will be spayed or neutered before adoption whenever possible. If the procedure hasn't been completed yet
+          (due to age, weight, or health reasons), we've got you covered! We'll coordinate the surgery at our assigned
+          veterinary clinic at no cost to you. This important procedure helps prevent unwanted litters and can improve
+          your pet's health and behavior.
+        </p>
+      </div>
+
+      <div class="included-item">
+        <h4>💉 Core Vaccinations</h4>
+        <p>Every pet receives their essential core vaccines to protect them from serious diseases. This includes:</p>
+        <ul>
+          <li><strong>Rabies</strong> - Required by law and protects against this fatal disease</li>
+          <li><strong>DHPP (Distemper, Hepatitis, Parvovirus, Parainfluenza)</strong> - Shields against common canine diseases</li>
+          <li><strong>Leptospirosis</strong> - Protection against bacterial infection</li>
+        </ul>
+        <p style="margin-top: 10px; font-size: 0.9em; color: #777;">
+          <em>Note: Non-core vaccines (Bordetella, Canine Influenza, Lyme) are not included but may be recommended by your veterinarian based on your pet's lifestyle.</em>
+        </p>
+      </div>
+
+      <div class="included-item">
+        <h4>🏥 Complete Medical Evaluation & Treatment</h4>
+        <p>
+          Each pet receives a thorough medical evaluation, and any existing conditions are treated while in our care.
+          We're committed to transparency. If your new friend has ongoing medical needs, we'll discuss this with you
+          upfront. In some cases, treatment may extend beyond adoption on a case-by-case basis. Always check with your
+          BDDC representative to confirm if ongoing care will be provided.
+        </p>
+      </div>
+
+      <div class="included-item">
+        <h4>🔍 Microchipping for Life</h4>
+        <p>
+          Your pet will be microchipped and registered, giving you peace of mind that if they ever get lost, they can be
+          returned home safely. This tiny chip is your pet's permanent ID and could make all the difference in a reunion!
+        </p>
+      </div>
+
+      <div class="included-item">
+        <h4>🐛 Parasite Prevention & Treatment</h4>
+        <p>
+          We treat all pets for common internal parasites (worms) and external parasites (fleas, ticks) as needed while
+          they're in our care. Your pet will start their new life free from these pesky critters! Please note that ongoing
+          monthly preventatives after adoption are your responsibility unless otherwise stated in writing.
+        </p>
+      </div>
+
+      <div class="included-item">
+        <h4>📋 Medical Records</h4>
+        <p>
+          You'll receive all available medical records at the time of adoption or shortly after. These can be shared with
+          your veterinarian to ensure continuity of care and help your vet understand your pet's complete health history.
+        </p>
+      </div>
+
+      <div class="included-item">
+        <h4>🎭 Behavior Assessment & Foster Insights</h4>
+        <p>
+          Many of our dogs live in foster homes, not kennels! This means we really get to know their personalities, quirks,
+          and preferences. While we can't guarantee behavior (every pet is unique!), we'll share everything we've observed
+          about their personality, energy level, and any behavioral considerations. We'll also let you know how they've done
+          with children, other dogs, or cats when this information is available.
+        </p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <h4>💡 Did You Know?</h4>
+      <p>
+        Your adoption fee helps offset a portion of the medical care and daily expenses for your pet, but it rarely covers
+        the full cost of everything we've invested in their care. Every adoption helps us save another life!
+      </p>
+    </div>
+
+    <div class="section">
+      <h3><span class="paw-icon">🚫</span> What's Not Included After Adoption</h3>
+      <div class="not-included">
+        <h4>After you take your new friend home, you'll be responsible for:</h4>
+        <ul>
+          <li>Routine wellness care (annual exams, booster vaccines)</li>
+          <li>Monthly heartworm and flea/tick prevention</li>
+          <li>Grooming, nail trims, and dental care</li>
+          <li>Food and treats</li>
+          <li>Emergency veterinary care or new medical conditions that arise after adoption (unless specifically agreed upon in advance)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3><span class="paw-icon">📝</span> The Adoption Process: Your Journey to Forever</h3>
+      <p style="margin-bottom: 20px;">We want to make sure every match is perfect! Here's how our adoption process works:</p>
+
+      <div class="process-steps">
+        <div class="step"><div class="step-number">1</div><p>Application</p></div>
+        <div class="step"><div class="step-number">2</div><p>Reference Check</p></div>
+        <div class="step"><div class="step-number">3</div><p>Vet Records Review</p></div>
+        <div class="step"><div class="step-number">4</div><p>Home Visit</p></div>
+        <div class="step"><div class="step-number">5</div><p>Approval!</p></div>
+        <div class="step"><div class="step-number">6</div><p>Meet &amp; Greet</p></div>
+        <div class="step"><div class="step-number">7</div><p>Adoption Day! 🎉</p></div>
+      </div>
+
+      <div class="important-box">
+        <h4>⏰ Important Timeline Information</h4>
+        <p>
+          <strong>Once approved, you have 48 hours to schedule a meet and greet and make your adoption decision.</strong>
+          After 48 hours, we'll begin considering other applications. If your chosen pet is still available after this
+          window, you can still adopt. Your approved application stays active, which means if another pet catches your eye
+          later, the process will be much quicker.
+        </p>
+      </div>
+
+      <div class="note-box">
+        <h4>🤔 Good to Know</h4>
+        <p>
+          <strong>Approval doesn't equal guarantee.</strong> Even with an approved application, the final decision considers
+          many factors including the pet's temperament, your living situation, medical needs, and family dynamics. Our
+          volunteers are dedicated to making the best match for both you and the animal. We conduct home visits (virtual or
+          in-person) to ensure we're setting everyone up for success!
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3><span class="paw-icon">🤝</span> Your Responsibilities as an Adopter</h3>
+      <p style="margin-bottom: 15px;">When you adopt from Big Dogs Don't Cry, you're making a commitment to:</p>
+
+      <div class="included-item">
+        <p><strong>Provide love and care for life:</strong> This includes routine veterinary care, proper nutrition, safe and comfortable housing, and humane treatment.</p>
+      </div>
+
+      <div class="included-item">
+        <p><strong>Keep us in the loop:</strong> If circumstances change and you can't keep your pet, please contact us immediately. We'll help facilitate a safe return. You may not rehome your pet without rescue approval. We care about them forever!</p>
+      </div>
+    </div>
+
+    <div class="intro-section" style="background: linear-gradient(135deg, #E8F4F8 0%, #D6EAF8 100%); border-left: 5px solid #5B9BD5;">
+      <h2><span class="heart-icon">💙</span> Ready to Change a Life?</h2>
+      <p>
+        Every adoption saves two lives, the one you adopt and the one that takes their place in our rescue. Thank you for
+        choosing to adopt and for giving a deserving pet their second chance at love and happiness. We're here to support
+        you every step of the way!
+      </p>
+    </div>
+  </div>
+
+  <!-- Wix Embed Height Auto-Adjustment Script -->
+  <script>
+    (function () {
+      let lastHeight = 0;
+      let ticking = false;
+
+      function getDocHeight() {
+        const doc = document.documentElement;
+        const body = document.body;
+
+        return Math.max(
+          doc.scrollHeight, doc.offsetHeight,
+          body.scrollHeight, body.offsetHeight
+        );
+      }
+
+      function postHeight() {
+        const height = getDocHeight();
+
+        if (Math.abs(height - lastHeight) < 2) return;
+        lastHeight = height;
+
+        window.parent.postMessage(
+          { type: "SET_HEIGHT", height },
+          "*"
+        );
+      }
+
+      function requestPostHeight() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          postHeight();
+        });
+      }
+
+      window.addEventListener("load", requestPostHeight);
+      window.addEventListener("resize", requestPostHeight);
+
+      if (window.ResizeObserver) {
+        new ResizeObserver(requestPostHeight).observe(document.body);
+      } else if (window.MutationObserver) {
+        const mo = new MutationObserver(requestPostHeight);
+        mo.observe(document.body, { childList: true, subtree: true, attributes: true });
+      }
+
+      setTimeout(requestPostHeight, 250);
+      setTimeout(requestPostHeight, 1000);
+    })();
+  </script>
+</body>
+</html>
